@@ -1,6 +1,6 @@
 ```
 -------------------------------------------------------------------------------
-【 タイトル 】 ZMIDI Controller  version 1.01
+【 タイトル 】 ZMIDI Controller  version 1.02
 【ファイル名】 zmidictl101.zip
 【 制 作 者 】 みゆ (miyu rose)
 【 制作環境 】 X68000 HE / XEiJ_0240908
