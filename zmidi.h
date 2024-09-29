@@ -1,14 +1,14 @@
 ;========================================================================================
 ;
-;  zmidi.h version 1.00 by ‚Í‚¤ (Hau) • ‚Ý‚ä (miyu rose)
+;  zmidi.h version 1.01 by ã¯ã† (Hau) ï¼† ã¿ã‚† (miyu rose)
 ;
-;                 Programmer  ‚Ý‚ä (miyu rose)
-;                             X68KBBSFX68K0001
-;                             X(Twitter)F@arith_rose
+;                 Programmer  ã¿ã‚† (miyu rose)
+;                             X68KBBSï¼šX68K0001
+;                             X(Twitter)ï¼š@arith_rose
 ;
-;            Special Adviser  ‚Í‚¤ (Hau) ‚³‚Ü
-;                     Tester  X68KBBSFX68K0024
-;                             X(Twitter)F@Hau_oli
+;            Special Adviser  ã¯ã† (Hau) ã•ã¾
+;                     Tester  X68KBBSï¼šX68K0024
+;                             X(Twitter)ï¼š@Hau_oli
 ;
 ;========================================================================================
 
@@ -21,111 +21,111 @@ _ZMIDI_REG    .equ     $00EAFA00
     .offset 0
 
 _ZMIDI_MODE:
-    .ds.b   1       ; $EAFA00FZMIDI ƒ‚[ƒhÝ’è
+    .ds.b   1       ; $EAFA00ï¼šZMIDI ãƒ¢ãƒ¼ãƒ‰è¨­å®š
                     ;  [READ]
-                    ;   $ffF’Êíƒ‚[ƒh
-                    ;   'S'FƒAƒNƒZƒXƒ‚[ƒhiZMIDI ƒŒƒWƒXƒ^‚Ö‚ÌƒAƒNƒZƒX‚ª‰Â”\‚Æ‚È‚è‚Ü‚·j
+                    ;   $ffï¼šé€šå¸¸ãƒ¢ãƒ¼ãƒ‰
+                    ;   'S'ï¼šã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼ˆZMIDI ãƒ¬ã‚¸ã‚¹ã‚¿ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ãŒå¯èƒ½ã¨ãªã‚Šã¾ã™ï¼‰
                     ;  [WRITE]
-                    ;   'Z'ˆÈŠOF’Êíƒ‚[ƒh‚É–ß‚é
-                    ;   'Z'@@FƒAƒNƒZƒXƒ‚[ƒh‚É“ü‚éi‘€ìŒã‘¬‚â‚©‚É’Êíƒ‚[ƒh‚É–ß‚·‚±‚Æj
+                    ;   'Z'ä»¥å¤–ï¼šé€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã‚‹
+                    ;   'Z'ã€€ã€€ï¼šã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ã«å…¥ã‚‹ï¼ˆæ“ä½œå¾Œé€Ÿã‚„ã‹ã«é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™ã“ã¨ï¼‰
 
 _ZMIDI_R00:
-    .ds.b   1       ; $ECFA01FR00 IVR (Š„‚èž‚ÝƒxƒNƒ^‚Ì“Ç‚Ýo‚µ) ‘Š“–
+    .ds.b   1       ; $ECFA01ï¼šR00 IVR (å‰²ã‚Šè¾¼ã¿ãƒ™ã‚¯ã‚¿ã®èª­ã¿å‡ºã—) ç›¸å½“
                     ;  [READONLY]
-                    ;  ƒoƒXƒGƒ‰[‚ª‹N‚«‚È‚¯‚ê‚Î MIDIƒ{[ƒh‘¶Ý
+                    ;  ãƒã‚¹ã‚¨ãƒ©ãƒ¼ãŒèµ·ããªã‘ã‚Œã° MIDIãƒœãƒ¼ãƒ‰å­˜åœ¨
 
 _ZMIDI_DELAY_UPPER:
-    .ds.b   1       ; $EAFA02FZMIDI ’x‰„Ý’èiãˆÊƒoƒCƒgj
-                    ;  [READ/WRITE] ¦ƒAƒNƒZƒXƒ‚[ƒhŽž
-                    ;   ’x‰„ŽžŠÔ(0msF$0000`1000msF$03E8) ‚ÌãˆÊƒoƒCƒg
+    .ds.b   1       ; $EAFA02ï¼šZMIDI é…å»¶è¨­å®šï¼ˆä¸Šä½ãƒã‚¤ãƒˆï¼‰
+                    ;  [READ/WRITE] â€»ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰æ™‚
+                    ;   é…å»¶æ™‚é–“(0msï¼š$0000ï½ž1000msï¼š$03E8) ã®ä¸Šä½ãƒã‚¤ãƒˆ
 
 _ZMIDI_R01:
-    .ds.b   1       ; $EAFA03FYM3802 R01 RGR (ƒVƒXƒeƒ€§Œä) ‘Š“–
+    .ds.b   1       ; $EAFA03ï¼šYM3802 R01 RGR (ã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡) ç›¸å½“
                     ;  [WRITEONLY]
 
 _ZMIDI_DELAY_LOWER:
-    .ds.b   1       ; $EAFA04FZMIDI ’x‰„Ý’èi‰ºˆÊƒoƒCƒgj(R/W)
-                    ;  [READ/WRITE] ¦ƒAƒNƒZƒXƒ‚[ƒhŽž
-                    ;   ’x‰„ŽžŠÔ(0msF$0000`1000msF$03E8) ‚ÌãˆÊƒoƒCƒg
+    .ds.b   1       ; $EAFA04ï¼šZMIDI é…å»¶è¨­å®šï¼ˆä¸‹ä½ãƒã‚¤ãƒˆï¼‰(R/W)
+                    ;  [READ/WRITE] â€»ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰æ™‚
+                    ;   é…å»¶æ™‚é–“(0msï¼š$0000ï½ž1000msï¼š$03E8) ã®ä¸‹ä½ãƒã‚¤ãƒˆ
 
 _ZMIDI_R02:
-    .ds.b   1       ; $EAFA05FYM3802 R02 ISR (Š„‚èž‚ÝƒXƒe[ƒ^ƒXî•ñ) ‘Š“–
+    .ds.b   1       ; $EAFA05ï¼šYM3802 R02 ISR (å‰²ã‚Šè¾¼ã¿ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±) ç›¸å½“
                     ;  [READONLY]
 
 _ZMIDI_PATCH:
-    .ds.b   1       ; $EAFA06FZMIDI MIDIM†ƒpƒbƒ`
-                    ;  [READ/WRITE] ¦ƒAƒNƒZƒXƒ‚[ƒhŽž
-                    ;   0Fƒpƒbƒ`‚È‚µ
-                    ;   1FSC-55ƒoƒ“ƒNƒZƒŒƒNƒg‘ã‘Ö‹@”\iƒLƒƒƒsƒ^ƒ‹—Ž‚¿ÄŒ»j
+    .ds.b   1       ; $EAFA06ï¼šZMIDI MIDIä¿¡å·ãƒ‘ãƒƒãƒ
+                    ;  [READ/WRITE] â€»ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰æ™‚
+                    ;   0ï¼šãƒ‘ãƒƒãƒãªã—
+                    ;   1ï¼šSC-55ãƒãƒ³ã‚¯ã‚»ãƒ¬ã‚¯ãƒˆä»£æ›¿æ©Ÿèƒ½ï¼ˆã‚­ãƒ£ãƒ”ã‚¿ãƒ«è½ã¡å†ç¾ï¼‰
 
 _ZMIDI_R03:
-    .ds.b   1       ; $EAFA07FYM3802 R03 ICR (Š„‚èž‚ÝƒNƒŠƒA§Œä) ‘Š“–
+    .ds.b   1       ; $EAFA07ï¼šYM3802 R03 ICR (å‰²ã‚Šè¾¼ã¿ã‚¯ãƒªã‚¢åˆ¶å¾¡) ç›¸å½“
                     ;  [WRITEONLY]
 
-    .ds.b   1       ; $EAFA08F–¢’è‹`
+    .ds.b   1       ; $EAFA08ï¼šæœªå®šç¾©
 
 _ZMIDI_Rx4:
-    .ds.b   1       ; $EAFA09F
+    .ds.b   1       ; $EAFA09ï¼š
                     ;  [READONLY]
-                    ;   ƒOƒ‹[ƒv”Ô† 5FYM3802 R54 TSR (‘—Mƒoƒbƒtƒ@EƒXƒe[ƒ^ƒX) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 6FYM3802 R64 FSR (FSKƒXƒe[ƒ^ƒX) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 7FYM3802 R74 SRR (ƒŒƒR[ƒfƒBƒ“ƒOEƒJƒEƒ“ƒ^“Ç‚Ýo‚µ) ‘Š“–
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 5ï¼šYM3802 R54 TSR (é€ä¿¡ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 6ï¼šYM3802 R64 FSR (FSKã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 7ï¼šYM3802 R74 SRR (ãƒ¬ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»ã‚«ã‚¦ãƒ³ã‚¿èª­ã¿å‡ºã—) ç›¸å½“
                     ;  [WRITEONLY]
-                    ;   ƒOƒ‹[ƒv”Ô† 0FYM3802 R04 IOR (Š„‚èž‚ÝƒxƒNƒ^EƒIƒtƒZƒbƒg) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 1FYM3802 R14 DMR (MIDI ƒŠƒAƒ‹ƒ^ƒCƒ€EƒƒbƒZ[ƒW§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 2FYM3802 R24 RRR (Žóf’ÊMƒŒƒCƒgÝ’è) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 3FYM3802 R34 RSR (ŽóMƒoƒbƒtƒ@EƒXƒe[ƒ^ƒX) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 4FYM3802 R44 TRR (‘—M’ÊMƒŒƒCƒgÝ’è) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 8FYM3802 R84 GTRL (”Ä—pƒ^ƒCƒ}Žž’è”Ý’èi‰ºˆÊj) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 9FYM3802 R94 EDR (ŠO•”I/Oƒ|[ƒg‚Ì“üo—Í‚ÌÝ’è) ‘Š“–
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 0ï¼šYM3802 R04 IOR (å‰²ã‚Šè¾¼ã¿ãƒ™ã‚¯ã‚¿ãƒ»ã‚ªãƒ•ã‚»ãƒƒãƒˆ) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 1ï¼šYM3802 R14 DMR (MIDI ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ ãƒ»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 2ï¼šYM3802 R24 RRR (å—è¨ºé€šä¿¡ãƒ¬ã‚¤ãƒˆè¨­å®š) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 3ï¼šYM3802 R34 RSR (å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 4ï¼šYM3802 R44 TRR (é€ä¿¡é€šä¿¡ãƒ¬ã‚¤ãƒˆè¨­å®š) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 8ï¼šYM3802 R84 GTRL (æ±Žç”¨ã‚¿ã‚¤ãƒžæ™‚å®šæ•°è¨­å®šï¼ˆä¸‹ä½ï¼‰) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 9ï¼šYM3802 R94 EDR (å¤–éƒ¨I/Oãƒãƒ¼ãƒˆã®å…¥å‡ºåŠ›ã®è¨­å®š) ç›¸å½“
 
-    .ds.b   1       ; $EAFA0AF–¢’è‹`
+    .ds.b   1       ; $EAFA0Aï¼šæœªå®šç¾©
 
 _ZMIDI_Rx5:
-    .ds.b   1       ; $EAFA0BF
+    .ds.b   1       ; $EAFA0Bï¼š
                     ;  [WRITEONLY]
-                    ;   ƒOƒ‹[ƒv”Ô† 0FYM3802 R05 IMR (Š„‚èž‚Ýƒ‚[ƒhEƒRƒ“ƒgƒ[ƒ‹) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 1FYM3802 R15 DCR (MIDI ƒŠƒAƒ‹ƒ^ƒCƒ€EƒƒbƒZ[ƒW§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 2FYM3802 R25 RMR (ŽóMƒpƒ‰ƒ[ƒ^) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 3FYM3802 R35 RCR (ŽóMƒoƒbƒtƒ@§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 4FYM3802 R45 TMR (‘—Mƒpƒ‰ƒ[ƒ^) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 5FYM3802 R55 TCR (‘—Mƒoƒbƒtƒ@§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 6FYM3802 R65 FCR (FSK§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 7FYM3802 R75 SCR (•âŠÔŠí@§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 8FYM3802 R85 GTRH (”Ä—pƒ^ƒCƒ}Žž’è”Ý’èiãˆÊj) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 9FYM3802 R95 EOR (ŠO•”I/Oƒ|[ƒg‚Ìo—Íƒf[ƒ^‚ÌÝ’è) ‘Š“–
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 0ï¼šYM3802 R05 IMR (å‰²ã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ãƒ»ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 1ï¼šYM3802 R15 DCR (MIDI ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ ãƒ»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 2ï¼šYM3802 R25 RMR (å—ä¿¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 3ï¼šYM3802 R35 RCR (å—ä¿¡ãƒãƒƒãƒ•ã‚¡åˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 4ï¼šYM3802 R45 TMR (é€ä¿¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 5ï¼šYM3802 R55 TCR (é€ä¿¡ãƒãƒƒãƒ•ã‚¡åˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 6ï¼šYM3802 R65 FCR (FSKåˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 7ï¼šYM3802 R75 SCR (è£œé–“å™¨ã€€åˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 8ï¼šYM3802 R85 GTRH (æ±Žç”¨ã‚¿ã‚¤ãƒžæ™‚å®šæ•°è¨­å®šï¼ˆä¸Šä½ï¼‰) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 9ï¼šYM3802 R95 EOR (å¤–éƒ¨I/Oãƒãƒ¼ãƒˆã®å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š) ç›¸å½“
 
-    .ds.b   1       ; $EAFA0CF–¢’è‹`
+    .ds.b   1       ; $EAFA0Cï¼šæœªå®šç¾©
 
 _ZMIDI_Rx6:
-    .ds.b   1       ; $EAFA0DF
+    .ds.b   1       ; $EAFA0Dï¼š
                     ;  [READONLY]
-                    ;   ƒOƒ‹[ƒv”Ô† 1FYM3802 R16 DSR (FIRO-IRx) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 3FYM3802 R36 RDR (ŽóMƒoƒbƒtƒ@@ƒf[ƒ^) ‘Š“–
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 1ï¼šYM3802 R16 DSR (FIRO-IRx) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 3ï¼šYM3802 R36 RDR (å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã€€ãƒ‡ãƒ¼ã‚¿) ç›¸å½“
                     ;  [WRITEONLY]
-                    ;   ƒOƒ‹[ƒv”Ô† 0FYM3802 R06 IER (Š„‚èž‚Ý§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 2FYM3802 R26 AMR (ƒAƒhƒŒƒXEƒnƒ“ƒ^§Œä‚P) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 5FYM3802 R56 TDR (‘—Mƒoƒbƒtƒ@‘‚«ž‚Ý) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 6FYM3802 R66 CCR (ƒNƒŠƒbƒNEƒJƒEƒ“ƒ^§Œä) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 7FYM3802 R76 SPRL (ƒvƒŒƒCƒoƒbƒNEƒJƒEƒ“ƒ^Žž’è”Ý’èi‰ºˆÊj) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 8FYM3802 R86 MTRL (MIDI ƒNƒƒbƒNEƒ^ƒCƒ}Žž’è”Ý’èi‰ºˆÊj) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 9FYM3802 R96 EIR (ŠO•”I/Oƒ|[ƒg‚Ì“ü—Íƒf[ƒ^‚Ì“Ç‚Ýo‚µ) ‘Š“–
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 0ï¼šYM3802 R06 IER (å‰²ã‚Šè¾¼ã¿åˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 2ï¼šYM3802 R26 AMR (ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ»ãƒãƒ³ã‚¿åˆ¶å¾¡ï¼‘) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 5ï¼šYM3802 R56 TDR (é€ä¿¡ãƒãƒƒãƒ•ã‚¡æ›¸ãè¾¼ã¿) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 6ï¼šYM3802 R66 CCR (ã‚¯ãƒªãƒƒã‚¯ãƒ»ã‚«ã‚¦ãƒ³ã‚¿åˆ¶å¾¡) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 7ï¼šYM3802 R76 SPRL (ãƒ—ãƒ¬ã‚¤ãƒãƒƒã‚¯ãƒ»ã‚«ã‚¦ãƒ³ã‚¿æ™‚å®šæ•°è¨­å®šï¼ˆä¸‹ä½ï¼‰) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 8ï¼šYM3802 R86 MTRL (MIDI ã‚¯ãƒ­ãƒƒã‚¯ãƒ»ã‚¿ã‚¤ãƒžæ™‚å®šæ•°è¨­å®šï¼ˆä¸‹ä½ï¼‰) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 9ï¼šYM3802 R96 EIR (å¤–éƒ¨I/Oãƒãƒ¼ãƒˆã®å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—) ç›¸å½“
                     ;  [UNDEFINED]
-                    ;   ƒOƒ‹[ƒv”Ô† 4FYM3802 R46 (–¢’è‹`) ‘Š“–
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 4ï¼šYM3802 R46 (æœªå®šç¾©) ç›¸å½“
 
 _ZMIDI_ENABLED:
-    .ds.b   1       ; $EAFA0EFZMIDI ƒ{[ƒh—LŒø/–³Œø‚ÌØ‚è‘Ö‚¦ƒ|[ƒg
+    .ds.b   1       ; $EAFA0Eï¼šZMIDI ãƒœãƒ¼ãƒ‰æœ‰åŠ¹/ç„¡åŠ¹ã®åˆ‡ã‚Šæ›¿ãˆãƒãƒ¼ãƒˆ
                     ;  [READ]
-                    ;   ZMIDI BOARD ‚Ü‚½‚Í ƒ³MIDIƒ{[ƒh ‚ª‘•’…‚³‚ê‚Ä‚¢‚ê‚Î“Ç‚ß‚Ü‚·
+                    ;   ZMIDI BOARD ã¾ãŸã¯ ç´”æ­£MIDIãƒœãƒ¼ãƒ‰ ãŒè£…ç€ã•ã‚Œã¦ã„ã‚Œã°èª­ã‚ã¾ã™
                     ;  [WRITE]
-                    ;   'E','N','A' ‚Æ‘‚«ž‚Þ‚Æ—LŒøƒ‚[ƒh
-                    ;   'D','I','S' ‚Æ‘‚«ž‚Þ‚Æ–³Œøƒ‚[ƒh ¦ƒAƒNƒZƒXƒ‚[ƒhŽž
+                    ;   'E','N','A' ã¨æ›¸ãè¾¼ã‚€ã¨æœ‰åŠ¹ãƒ¢ãƒ¼ãƒ‰
+                    ;   'D','I','S' ã¨æ›¸ãè¾¼ã‚€ã¨ç„¡åŠ¹ãƒ¢ãƒ¼ãƒ‰ â€»ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰æ™‚
 
 _ZMIDI_Rx7:
-    .ds.b   1       ; $EAFA0FF
+    .ds.b   1       ; $EAFA0Fï¼š
                     ;  [WRITEONLY]
-                    ;   ƒOƒ‹[ƒv”Ô† 1FYM3802 R17 DNR (FIFO-IRxXV) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 2FYM3802 R27 ADR (ƒAƒhƒŒƒXEƒnƒ“ƒ^§Œä‚Q) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 6FYM3802 R67 CDR (ƒNƒŠƒbƒNEƒJƒEƒ“ƒ^Žž’è”Ý’è) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 7FYM3802 R77 SPRH (ƒvƒŒƒCƒoƒbƒNEƒJƒEƒ“ƒ^Žž’è”Ý’èiãˆÊj) ‘Š“–
-                    ;   ƒOƒ‹[ƒv”Ô† 8FYM3802 R87 MTRH (MIDI ƒNƒƒbƒNEƒ^ƒCƒ}Žž’è”Ý’èiãˆÊj) ‘Š“–
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 1ï¼šYM3802 R17 DNR (FIFO-IRxæ›´æ–°) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 2ï¼šYM3802 R27 ADR (ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ»ãƒãƒ³ã‚¿åˆ¶å¾¡ï¼’) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 6ï¼šYM3802 R67 CDR (ã‚¯ãƒªãƒƒã‚¯ãƒ»ã‚«ã‚¦ãƒ³ã‚¿æ™‚å®šæ•°è¨­å®š) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 7ï¼šYM3802 R77 SPRH (ãƒ—ãƒ¬ã‚¤ãƒãƒƒã‚¯ãƒ»ã‚«ã‚¦ãƒ³ã‚¿æ™‚å®šæ•°è¨­å®šï¼ˆä¸Šä½ï¼‰) ç›¸å½“
+                    ;   ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå· 8ï¼šYM3802 R87 MTRH (MIDI ã‚¯ãƒ­ãƒƒã‚¯ãƒ»ã‚¿ã‚¤ãƒžæ™‚å®šæ•°è¨­å®šï¼ˆä¸Šä½ï¼‰) ç›¸å½“
