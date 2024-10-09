@@ -1,14 +1,14 @@
 ;========================================================================================
 ;
-; zmidictl version 1.02 by ‚Í‚¤ (Hau) • ‚İ‚ä (miyu rose)
+; zmidictl version 1.03 by ã¯ã† (Hau) ï¼† ã¿ã‚† (miyu rose)
 ;
-;                 Programmer  ‚İ‚ä (miyu rose)
-;                             X68KBBSFX68K0001
-;                             X(Twitter)F@arith_rose
+;                 Programmer  ã¿ã‚† (miyu rose)
+;                             X68KBBSï¼šX68K0001
+;                             X(Twitter)ï¼š@arith_rose
 ;
-;            Special Adviser  ‚Í‚¤ (Hau) ‚³‚Ü
-;                     Tester  X68KBBSFX68K0024
-;                             X(Twitter)F@Hau_oli
+;            Special Adviser  ã¯ã† (Hau) ã•ã¾
+;                     Tester  X68KBBSï¼šX68K0024
+;                             X(Twitter)ï¼š@Hau_oli
 ;
 ;========================================================================================
 
@@ -24,269 +24,269 @@
 ;=========================================================================================
 
 main:
-    lea.l   mysp,sp                             ; ƒXƒ^ƒbƒN—Ìˆæ‚ğ©‘O‚ÅŠm•Û
+    lea.l   mysp,sp                             ; ã‚¹ã‚¿ãƒƒã‚¯é ˜åŸŸã‚’è‡ªå‰ã§ç¢ºä¿
 
 ;-----------------------------------------------------------------------------------------
 
-SUPERVISORMODE:
-    clr.l   -(sp)                               ; SUPERVISOR ƒ‚[ƒh
+preparation:
+    clr.l   -(sp)                               ; SUPERVISOR ãƒ¢ãƒ¼ãƒ‰
     DOS     _SUPER
-    tst.l   d0                                  ; Œ³‚Ì SSP ƒAƒhƒŒƒX‚ª
-    bpl     @f                                  ; ³‚µ‚­æ“¾‚Å‚«‚½‚ç¬Œ÷‚È‚Ì‚ÅŸ‚Ö
+    tst.l   d0                                  ; å…ƒã® SSP ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒ
+    bpl     @f                                  ; æ­£ã—ãå–å¾—ã§ããŸã‚‰æˆåŠŸãªã®ã§æ¬¡ã¸
     DOS     _EXIT
 @@:
-    move.l  d0, (sp)                            ; SUPERVISOR ƒ‚[ƒh‚É‚È‚ê‚½‚Ì‚Å SSP •Û‘¶
+    move.l  d0, (sp)                            ; SUPERVISOR ãƒ¢ãƒ¼ãƒ‰ã«ãªã‚ŒãŸã®ã§ SSP ä¿å­˜
 
-    bsr     ZMIDI_set_accessmode                ; ZMIDI ‚ğƒAƒNƒZƒXƒ‚[ƒh‚ÉˆÚs
+    bsr     ZMIDI_set_accessmode                ; ZMIDI ã‚’ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 
 ;-----------------------------------------------------------------------------------------
   
 .ifdef __DEBUG__
-    bsr     ZMIDI_setup_sandbox                 ; ƒeƒXƒgŠÂ‹«ƒZƒbƒgƒAƒbƒv
+    bsr     ZMIDI_setup_sandbox                 ; ãƒ†ã‚¹ãƒˆç’°å¢ƒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 .endif
 
 ;-----------------------------------------------------------------------------------------
 
-    addq.l  #1,a2                               ; ˆø”‚ÌƒTƒCƒY‚Í–³‹
+    addq.l  #1,a2                               ; å¼•æ•°ã®ã‚µã‚¤ã‚ºã¯ç„¡è¦–
 arg_check:
-    move.b  (a2)+,d0                            ; ˆø”•¶š‚ğƒtƒFƒbƒ`
-    cmpi.b  #' ',d0                             ; ' ' ‚Æ”äŠr‚µ‚Ä
-    beq     arg_check                           ;  “¯‚¶‚È‚çƒXƒLƒbƒv
-    cmpi.b  #'-',d0                             ; '-' ‚Æ”äŠr‚µ‚Ä
-    beq     arg_option                          ;  “¯‚¶‚È‚çƒIƒvƒVƒ‡ƒ“ˆø”ƒ`ƒFƒbƒN‚Ö
-    tst.b   d0                                  ; I’[•¶š‚Æ”äŠr‚µ‚Ä
-    beq     99f                                 ;  “¯‚¶‚È‚çˆø”ƒ`ƒFƒbƒNI—¹
+    move.b  (a2)+,d0                            ; å¼•æ•°æ–‡å­—ã‚’ãƒ•ã‚§ãƒƒãƒ
+    cmpi.b  #' ',d0                             ; ' ' ã¨æ¯”è¼ƒã—ã¦
+    beq     arg_check                           ;  åŒã˜ãªã‚‰ã‚¹ã‚­ãƒƒãƒ—
+    cmpi.b  #'-',d0                             ; '-' ã¨æ¯”è¼ƒã—ã¦
+    beq     arg_option                          ;  åŒã˜ãªã‚‰ã‚ªãƒ—ã‚·ãƒ§ãƒ³å¼•æ•°ãƒã‚§ãƒƒã‚¯ã¸
+    tst.b   d0                                  ; çµ‚ç«¯æ–‡å­—ã¨æ¯”è¼ƒã—ã¦
+    beq     99f                                 ;  åŒã˜ãªã‚‰å¼•æ•°ãƒã‚§ãƒƒã‚¯çµ‚äº†
 
 arg_help:
-    bsr     disp_Help                           ; ƒwƒ‹ƒv•\¦
-    bra     USERMODE                            ; ‚¨‚µ‚Ü‚¢
+    bsr     disp_Help                           ; ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
+    bra     cleanup                             ; ãŠã—ã¾ã„
 
 arg_option:
-    move.b  (a2)+,d0                            ; ˆø”•¶š(1•¶š–Ú)‚ğƒtƒFƒbƒ`
-    or.b    #$20,d0                             ; ¬•¶š‰»($00‚Í' '‚É‚È‚è‚Ü‚·)
+    move.b  (a2)+,d0                            ; å¼•æ•°æ–‡å­—(1æ–‡å­—ç›®)ã‚’ãƒ•ã‚§ãƒƒãƒ
+    or.b    #$20,d0                             ; å°æ–‡å­—åŒ–($00ã¯' 'ã«ãªã‚Šã¾ã™)
 
-    cmpi.b  #'q',d0                             ; 'q' ‚Æ”äŠr‚µ‚Ä
-    bne     10f                                 ;  ˆá‚Á‚½‚çŸ‚Ö
-    ori.b   #%10000000,flag_zmidictl            ; quiet ƒ‚[ƒh‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
-    bra     arg_check                           ; Ÿ‚Ìˆø”•¶šƒ`ƒFƒbƒN‚Ö
+    cmpi.b  #'q',d0                             ; 'q' ã¨æ¯”è¼ƒã—ã¦
+    bne     10f                                 ;  é•ã£ãŸã‚‰æ¬¡ã¸
+    ori.b   #%10000000,flag_zmidictl            ; quiet ãƒ¢ãƒ¼ãƒ‰ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
+    bra     arg_check                           ; æ¬¡ã®å¼•æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯ã¸
 
 10:
-    cmpi.b  #'d',d0                             ; 'd' ‚Æ”äŠr‚µ‚Ä
-    bne     20f                                 ;  ˆá‚Á‚½‚çŸ‚Ö
-    moveq.l #0,d0                               ; ˆø”‚ğˆµ‚¢‚â‚·‚¢‚æ‚¤ 0 ‚É
-    moveq.l #0,d1                               ; ’x‰„ŠÔ‚Ì‰¼’l‚ğ 0 ‚É 
+    cmpi.b  #'d',d0                             ; 'd' ã¨æ¯”è¼ƒã—ã¦
+    bne     20f                                 ;  é•ã£ãŸã‚‰æ¬¡ã¸
+    moveq.l #0,d0                               ; å¼•æ•°ã‚’æ‰±ã„ã‚„ã™ã„ã‚ˆã† 0 ã«
+    moveq.l #0,d1                               ; é…å»¶æ™‚é–“ã®ä»®å€¤ã‚’ 0 ã« 
 
-    move.b  (a2),d0                             ; Ÿ‚Ìˆø”‚ğ d0 ‚Éæ“¾
-    cmp.b   #'0',d0                             ; '0' ‚ğ d0 ‚Æ”äŠr
-    blt     arg_help                            ;  d0 ‚ª¬‚³‚¯‚ê‚Îƒwƒ‹ƒv‚Ö
-    cmp.b   #'9',d0                             ; '9' ‚ğ d0 ‚Æ”äŠr
-    bgt     arg_help                            ;  d0 ‚ª‘å‚«‚¯‚ê‚Îƒwƒ‹ƒv‚Ö
-    bra     12f                                 ; Ÿ‚Ö
+    move.b  (a2),d0                             ; æ¬¡ã®å¼•æ•°ã‚’ d0 ã«å–å¾—
+    cmp.b   #'0',d0                             ; '0' ã‚’ d0 ã¨æ¯”è¼ƒ
+    blt     arg_help                            ;  d0 ãŒå°ã•ã‘ã‚Œã°ãƒ˜ãƒ«ãƒ—ã¸
+    cmp.b   #'9',d0                             ; '9' ã‚’ d0 ã¨æ¯”è¼ƒ
+    bgt     arg_help                            ;  d0 ãŒå¤§ãã‘ã‚Œã°ãƒ˜ãƒ«ãƒ—ã¸
+    bra     12f                                 ; æ¬¡ã¸
 11:
-    move.b  (a2),d0                             ; Ÿ‚Ìˆø”‚ğ d0 ‚Éæ“¾
-    cmp.b   #'0',d0                             ; '0' ‚ğ d0 ‚Æ”äŠr
-    blt     19f                                 ;  d0 ‚ª¬‚³‚¯‚ê‚Î’x‰„ŠÔİ’è‚Ö
-    cmp.b   #'9',d0                             ; '9' ‚ğ d0 ‚Æ”äŠr
-    bgt     19f                                 ;  d0 ‚ª‘å‚«‚¯‚ê‚Î’x‰„ŠÔİ’è‚Ö
+    move.b  (a2),d0                             ; æ¬¡ã®å¼•æ•°ã‚’ d0 ã«å–å¾—
+    cmp.b   #'0',d0                             ; '0' ã‚’ d0 ã¨æ¯”è¼ƒ
+    blt     19f                                 ;  d0 ãŒå°ã•ã‘ã‚Œã°é…å»¶æ™‚é–“è¨­å®šã¸
+    cmp.b   #'9',d0                             ; '9' ã‚’ d0 ã¨æ¯”è¼ƒ
+    bgt     19f                                 ;  d0 ãŒå¤§ãã‘ã‚Œã°é…å»¶æ™‚é–“è¨­å®šã¸
 12:
-    addq.l  #1,a2                               ; ˆø”ƒ|ƒCƒ“ƒ^‚ği‚ß‚é
-    and.b   #$0f,d0                             ; d0 ‚ğ 0`9 ‚É”’l‰»
+    addq.l  #1,a2                               ; å¼•æ•°ãƒã‚¤ãƒ³ã‚¿ã‚’é€²ã‚ã‚‹
+    and.b   #$0f,d0                             ; d0 ã‚’ 0ï½9 ã«æ•°å€¤åŒ–
 
     lsl.l   #1,d1                               ; d1 *= 2
     move.l  d1,d2                               ; d2 = d1
     lsl.l   #2,d2                               ; d2 *= 4
     add.l   d2,d1                               ; d1 += d2
     add.l   d0,d1                               ; d1 += d0
-    cmp.l   #1000,d1                            ; #1000 ‚Æ d1 ‚ğ”äŠr
-    ble     11b                                 ;  d1<=1000 ‚È‚çŸ‚ÌŒ…‚Ö
-    bra     arg_help                            ; ƒwƒ‹ƒv•\¦
+    cmp.l   #1000,d1                            ; #1000 ã¨ d1 ã‚’æ¯”è¼ƒ
+    ble     11b                                 ;  d1<=1000 ãªã‚‰æ¬¡ã®æ¡ã¸
+    bra     arg_help                            ; ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
 19:
-    move.l  d1,d0                               ; d0 = d1 (’x‰„ŠÔ‚ğŠm’è)
-    bsr     ZMIDI_set_delaytime                 ; ’x‰„ŠÔ‚ğİ’è
-    bra     arg_check                           ; Ÿ‚Ìˆø”•¶šƒ`ƒFƒbƒN‚Ö
+    move.l  d1,d0                               ; d0 = d1 (é…å»¶æ™‚é–“ã‚’ç¢ºå®š)
+    bsr     ZMIDI_set_delaytime                 ; é…å»¶æ™‚é–“ã‚’è¨­å®š
+    bra     arg_check                           ; æ¬¡ã®å¼•æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯ã¸
 
 20:
-    cmpi.b  #'p',d0                             ; 'p' ‚Æ”äŠr‚µ‚Ä
-    bne     30f                                 ;  ˆá‚Á‚½‚çŸ‚Ö
+    cmpi.b  #'p',d0                             ; 'p' ã¨æ¯”è¼ƒã—ã¦
+    bne     30f                                 ;  é•ã£ãŸã‚‰æ¬¡ã¸
 
-    move.b  (a2)+,d0                            ; Ÿ‚Ìˆø”‚ğƒtƒFƒbƒ`
-    cmp.b   #'0',d0                             ; '0' ‚Æ”äŠr
-    beq     22f                                 ;  “¯‚¶‚È‚çƒpƒbƒ`–³Œø‚Ö
-    cmp.b   #'1',d0                             ; '1' ‚Æ”äŠr
-    bne     arg_help                            ;  ˆá‚Á‚½‚çƒwƒ‹ƒv•\¦
+    move.b  (a2)+,d0                            ; æ¬¡ã®å¼•æ•°ã‚’ãƒ•ã‚§ãƒƒãƒ
+    cmp.b   #'0',d0                             ; '0' ã¨æ¯”è¼ƒ
+    beq     22f                                 ;  åŒã˜ãªã‚‰ãƒ‘ãƒƒãƒç„¡åŠ¹ã¸
+    cmp.b   #'1',d0                             ; '1' ã¨æ¯”è¼ƒ
+    bne     arg_help                            ;  é•ã£ãŸã‚‰ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
 21:
-    bsr     ZMIDI_set_patch                     ; SC-55ƒoƒ“ƒNƒZƒŒƒNƒg‘ã‘Öƒpƒbƒ`‚ğ—LŒø‚É‚·‚é
-    bra     arg_check                           ; Ÿ‚Ìˆø”•¶šƒ`ƒFƒbƒN‚Ö
+    bsr     ZMIDI_set_patch                     ; SC-55ãƒãƒ³ã‚¯ã‚»ãƒ¬ã‚¯ãƒˆä»£æ›¿ãƒ‘ãƒƒãƒã‚’æœ‰åŠ¹ã«ã™ã‚‹
+    bra     arg_check                           ; æ¬¡ã®å¼•æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯ã¸
 22:
-    bsr     ZMIDI_unset_patch                   ; SC-55ƒoƒ“ƒNƒZƒŒƒNƒg‘ã‘Öƒpƒbƒ`‚ğ–³Œø‚É‚·‚é
-    bra     arg_check                           ; Ÿ‚Ìˆø”•¶šƒ`ƒFƒbƒN‚Ö
+    bsr     ZMIDI_unset_patch                   ; SC-55ãƒãƒ³ã‚¯ã‚»ãƒ¬ã‚¯ãƒˆä»£æ›¿ãƒ‘ãƒƒãƒã‚’ç„¡åŠ¹ã«ã™ã‚‹
+    bra     arg_check                           ; æ¬¡ã®å¼•æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯ã¸
 
 30:
-    cmpi.b  #'z',d0                             ; 'z' ‚Æ”äŠr‚µ‚Ä
-    bne     40f                                 ;  ˆá‚Á‚½‚çŸ‚Ö
+    cmpi.b  #'z',d0                             ; 'z' ã¨æ¯”è¼ƒã—ã¦
+    bne     40f                                 ;  é•ã£ãŸã‚‰æ¬¡ã¸
 
-    move.b  (a2)+,d0                            ; Ÿ‚Ìˆø”‚ğƒtƒFƒbƒ`
-    cmp.b   #'0',d0                             ; '0' ‚Æ”äŠr
-    beq     32f                                 ;  “¯‚¶‚È‚ç’Êíƒ‚[ƒhİ’è
-    cmp.b   #'1',d0                             ; '1' ‚Æ”äŠr
-    bne     arg_help                            ;  ˆá‚Á‚½‚çƒwƒ‹ƒv•\¦
+    move.b  (a2)+,d0                            ; æ¬¡ã®å¼•æ•°ã‚’ãƒ•ã‚§ãƒƒãƒ
+    cmp.b   #'0',d0                             ; '0' ã¨æ¯”è¼ƒ
+    beq     32f                                 ;  åŒã˜ãªã‚‰é€šå¸¸ãƒ¢ãƒ¼ãƒ‰è¨­å®š
+    cmp.b   #'1',d0                             ; '1' ã¨æ¯”è¼ƒ
+    bne     arg_help                            ;  é•ã£ãŸã‚‰ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
 31:
-    bsr     ZMIDI_set_enable                    ; ƒAƒNƒZƒXƒ‚[ƒh‚É‚·‚é
-    bra     arg_check                           ; Ÿ‚Ìˆø”•¶šƒ`ƒFƒbƒN‚Ö
+    bsr     ZMIDI_set_enable                    ; ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹
+    bra     arg_check                           ; æ¬¡ã®å¼•æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯ã¸
 32:
-    bsr     ZMIDI_set_disable                   ; ’Êíƒ‚[ƒh‚É‚·‚é
-    bra     arg_check                           ; Ÿ‚Ìˆø”•¶šƒ`ƒFƒbƒN‚Ö
+    bsr     ZMIDI_set_disable                   ; é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹
+    bra     arg_check                           ; æ¬¡ã®å¼•æ•°æ–‡å­—ãƒã‚§ãƒƒã‚¯ã¸
 40:
 98:
-    bra     arg_help                            ; ŠY“–‚µ‚È‚¢‚Ì‚Åƒwƒ‹ƒv•\¦‚Ö
+    bra     arg_help                            ; è©²å½“ã—ãªã„ã®ã§ãƒ˜ãƒ«ãƒ—è¡¨ç¤ºã¸
 
 99:
 
 ;-----------------------------------------------------------------------------------------
 
-    bsr     disp_title                          ; ƒ^ƒCƒgƒ‹•\¦
-    bsr     disp_status                         ; ZMIDI BOARD ‚Ìó‘Ô•\¦
-    bsr     disp_crlf                           ; ‰üs•\¦
+    bsr     disp_title                          ; ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+    bsr     disp_status                         ; ZMIDI BOARD ã®çŠ¶æ…‹è¡¨ç¤º
+    bsr     disp_crlf                           ; æ”¹è¡Œè¡¨ç¤º
 
 ;-----------------------------------------------------------------------------------------
 
-    bsr     ZMIDI_set_normalmode                ; ZMIDI ‚ğ’Êíƒ‚[ƒh‚É–ß‚·
+cleanup:
+    bsr     ZMIDI_set_normalmode                ; ZMIDI ã‚’é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 
-USERMODE:
-    DOS     _SUPER                              ; USER ƒ‚[ƒh
+    DOS     _SUPER                              ; USER ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹
     addq.l  #4,sp
 
 ;-----------------------------------------------------------------------------------------
 
 EXIT:
-    DOS        _EXIT                            ; ‚¨‚µ‚Ü‚¢
+    DOS        _EXIT                            ; ãŠã—ã¾ã„
 
 ;=========================================================================================
 
 disp_title:
-    btst.b  #7,flag_zmidictl                    ; Quiet ƒtƒ‰ƒO‚ª
-    bne     99f                                 ; ƒIƒ“‚È‚ç‚¨‚µ‚Ü‚¢
+    btst.b  #7,flag_zmidictl                    ; Quiet ãƒ•ãƒ©ã‚°ãŒ
+    bne     99f                                 ; ã‚ªãƒ³ãªã‚‰ãŠã—ã¾ã„
 
-    movem.l d0,-(sp)                            ; g—pƒŒƒWƒXƒ^‚ğ‘Ş”ğ
+    movem.l d0,-(sp)                            ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’é€€é¿
 
-    bsr     mlib_printtitle                     ; Title •\¦
+    bsr     mlib_printtitle                     ; Title è¡¨ç¤º
 
-    pea.l   mlib_crlf                           ; ‰üs‚ğ
-    DOS     _PRINT                              ;  •\¦‚·‚é‚æ
+    pea.l   mlib_crlf                           ; æ”¹è¡Œã‚’
+    DOS     _PRINT                              ;  è¡¨ç¤ºã™ã‚‹ã‚ˆ
     addq.l  #4,sp
 
-    movem.l (sp)+,d0                            ; g—pƒŒƒWƒXƒ^‚ğ•œŒ³
+    movem.l (sp)+,d0                            ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’å¾©å…ƒ
 99:
     rts
 
 ;-----------------------------------------------------------------------------------------
 
 disp_crlf:
-    btst.b  #7,flag_zmidictl                    ; Quiet ƒtƒ‰ƒO‚ª
-    bne     99f                                 ; ƒIƒ“‚È‚ç‚¨‚µ‚Ü‚¢
+    btst.b  #7,flag_zmidictl                    ; Quiet ãƒ•ãƒ©ã‚°ãŒ
+    bne     99f                                 ; ã‚ªãƒ³ãªã‚‰ãŠã—ã¾ã„
 
-    movem.l d0,-(sp)                            ; g—pƒŒƒWƒXƒ^‚ğ‘Ş”ğ
+    movem.l d0,-(sp)                            ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’é€€é¿
 
-    pea.l   mlib_crlf                           ; ‰üs‚ğ
-    DOS     _PRINT                              ;  •\¦‚·‚é‚æ
+    pea.l   mlib_crlf                           ; æ”¹è¡Œã‚’
+    DOS     _PRINT                              ;  è¡¨ç¤ºã™ã‚‹ã‚ˆ
     addq.l  #4,sp
 
-    movem.l (sp)+,d0                            ; g—pƒŒƒWƒXƒ^‚ğ•œŒ³
+    movem.l (sp)+,d0                            ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’å¾©å…ƒ
 99:
     rts
 
 ;-----------------------------------------------------------------------------------------
 
 disp_status:
-    btst.b  #7,flag_zmidictl                    ; Quiet ƒtƒ‰ƒO‚ª
-    bne     99f                                 ; ƒIƒ“‚È‚ç‚¨‚µ‚Ü‚¢
+    btst.b  #7,flag_zmidictl                    ; Quiet ãƒ•ãƒ©ã‚°ãŒ
+    bne     99f                                 ; ã‚ªãƒ³ãªã‚‰ãŠã—ã¾ã„
 
-    movem.l d0-d1,-(sp)                         ; g—pƒŒƒWƒXƒ^‚ğ‘Ş”ğ
+    movem.l d0-d1,-(sp)                         ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’é€€é¿
 10:
 
-    bsr     ZMIDI_get_status                    ; ZMIDIƒ{[ƒh‚ÌŒ»İ‚Ìİ’è‚ğæ“¾
-    bmi     90f                                 ; ZMIDI‚ª–³Œø‚Ìê‡
+    bsr     ZMIDI_get_status                    ; ZMIDIãƒœãƒ¼ãƒ‰ã®ç¾åœ¨ã®è¨­å®šã‚’å–å¾—
+    bmi     90f                                 ; ZMIDIãŒç„¡åŠ¹ã®å ´åˆ
 
 20:
-    pea.l   mes_delay                           ;uMIDIM†’x‰„ŠÔv
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mes_delay                           ;ã€ŒMIDIä¿¡å·é…å»¶æ™‚é–“ã€
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
     
-    move.l d1,d0                                ; ‘æ‚Q•Ô‚è’l‚ğ d0 ‚Ö
-    andi.l #$ffff,d0                            ; ‰ºˆÊƒ[ƒh‚Ì‚İ‚ğ’Šo
-    bsr    mlib_printdec                        ; \i”•\¦
+    move.l d1,d0                                ; ç¬¬ï¼’è¿”ã‚Šå€¤ã‚’ d0 ã¸
+    andi.l #$ffff,d0                            ; ä¸‹ä½ãƒ¯ãƒ¼ãƒ‰ã®ã¿ã‚’æŠ½å‡º
+    bsr    mlib_printdec                        ; åé€²æ•°è¡¨ç¤º
 
-    pea.l   mes_ms                              ; umsv
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mes_ms                              ; ã€Œmsã€
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
-    pea.l   mlib_crlf                           ; ‰üs‚ğ
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mlib_crlf                           ; æ”¹è¡Œã‚’
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
 30:
-    pea.l   mes_patch                           ; uMIDIM†ƒpƒbƒ`v
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mes_patch                           ; ã€ŒMIDIä¿¡å·ãƒ‘ãƒƒãƒã€
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
-    move.l d1,d0                                ; ‘æ‚Q•Ô‚è’l‚ğ d0 ‚Ö
-    andi.l #$10000,d0                           ; ƒpƒbƒ`ó‹µ‚ğæ“¾
+    move.l d1,d0                                ; ç¬¬ï¼’è¿”ã‚Šå€¤ã‚’ d0 ã¸
+    andi.l #$10000,d0                           ; ãƒ‘ãƒƒãƒçŠ¶æ³ã‚’å–å¾—
     beq    @f
 
-    pea.l  mes_on                               ; uƒIƒ“v
-    DOS    _PRINT                               ;  •\¦
+    pea.l  mes_on                               ; ã€Œã‚ªãƒ³ã€
+    DOS    _PRINT                               ;  è¡¨ç¤º
     addq.l #4,sp
 
     bra    39f
 @@:
-    pea.l   mes_off                             ; uƒIƒtv
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mes_off                             ; ã€Œã‚ªãƒ•ã€
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 39:
-    pea.l   mlib_crlf                           ; ‰üs‚ğ
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mlib_crlf                           ; æ”¹è¡Œã‚’
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
     bra    98f
 
 90:
 
-    pea.l   ZMIDI_Name                          ; ZMIDI ‚Ì–¼‘O
-    DOS     _PRINT                              ;  •\¦
+    pea.l   ZMIDI_Name                          ; ZMIDI ã®åå‰
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
-    pea.l   mes_disabled                        ; u—˜—p‚Å‚«‚Ü‚¹‚ñv
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mes_disabled                        ; ã€Œåˆ©ç”¨ã§ãã¾ã›ã‚“ã€
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
-    pea.l   mlib_crlf                           ; ‰üs‚ğ
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mlib_crlf                           ; æ”¹è¡Œã‚’
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
 98:
-    movem.l (sp)+,d0-d1                         ; g—pƒŒƒWƒXƒ^‚ğ•œŒ³
+    movem.l (sp)+,d0-d1                         ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’å¾©å…ƒ
 99:
-    rts                                         ; ‚¨‚µ‚Ü‚¢
+    rts                                         ; ãŠã—ã¾ã„
 
 ;-----------------------------------------------------------------------------------------
 
 disp_Help:
-    btst.b  #7,flag_zmidictl                    ; Quiet ƒtƒ‰ƒO‚ª
-    bne     99f                                 ; ƒIƒ“‚È‚ç‚¨‚µ‚Ü‚¢
+    btst.b  #7,flag_zmidictl                    ; Quiet ãƒ•ãƒ©ã‚°ãŒ
+    bne     99f                                 ; ã‚ªãƒ³ãªã‚‰ãŠã—ã¾ã„
 
-    movem.l d0,-(sp)                            ; g—pƒŒƒWƒXƒ^‚ğ‘Ş”ğ
+    movem.l d0,-(sp)                            ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’é€€é¿
 
-    bsr     disp_title                          ; ƒ^ƒCƒgƒ‹•\¦
+    bsr     disp_title                          ; ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
 
-    pea.l   mes_help                            ; ƒwƒ‹ƒv‚ğ
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mes_help                            ; ãƒ˜ãƒ«ãƒ—ã‚’
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
-    pea.l   mlib_crlf                           ; ‰üs‚ğ
-    DOS     _PRINT                              ;  •\¦
+    pea.l   mlib_crlf                           ; æ”¹è¡Œã‚’
+    DOS     _PRINT                              ;  è¡¨ç¤º
     addq.l  #4,sp
 
-    movem.l (sp)+,d0                            ; g—pƒŒƒWƒXƒ^‚ğ•œŒ³
+    movem.l (sp)+,d0                            ; ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’å¾©å…ƒ
 99:
     rts
 
@@ -301,33 +301,33 @@ mlib_title::
     .dc.b   'zmidictl ',$00
 mlib_version::
     .dc.b   $F3,'v',$F3,'e',$F3,'r',$F3,'s',$F3,'i',$F3,'o',$F3,'n',$F3,' '
-    .dc.b   $F3,'1',$F3,'.',$F3,'0',$F3,'2',$F3,' ',$00
+    .dc.b   $F3,'1',$F3,'.',$F3,'0',$F3,'3',$F3,' ',$00
 mlib_by::
     .dc.b   ' ',$F3,'b',$F3,'y ',$00
 mlib_author::
-    .dc.b   'Hau & ‚İ‚ä (miyu rose)',$00
+    .dc.b   'Hau & ã¿ã‚† (miyu rose)',$00
 
 mes_help:
     .dc.b   ' zmidictl.x [options] ([options]...)',$0D,$0A
     .dc.b   '  [options]',$0D,$0A
-    .dc.b   '   -q         : ƒƒbƒZ[ƒW”ñ•\¦',$0D,$0A
-    .dc.b   '   -d[0-1000] : ’x‰„ŠÔw’è(ms)',$0D,$0A
-    .dc.b   '   -p[0|1]    : ƒLƒƒƒsƒ^ƒ‹—‚¿ÄŒ»ƒpƒbƒ` –³Œø|—LŒø',$0D,$0A
-    .dc.b   '   -z[0|1]    : ZMIDIƒ{[ƒh –³Œø|—LŒø',$0D,$0A
+    .dc.b   '   -q         : ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸éè¡¨ç¤º',$0D,$0A
+    .dc.b   '   -d[0-1000] : é…å»¶æ™‚é–“æŒ‡å®š(ms)',$0D,$0A
+    .dc.b   '   -p[0|1]    : ã‚­ãƒ£ãƒ”ã‚¿ãƒ«è½ã¡å†ç¾ãƒ‘ãƒƒãƒ ç„¡åŠ¹|æœ‰åŠ¹',$0D,$0A
+    .dc.b   '   -z[0|1]    : ZMIDIãƒœãƒ¼ãƒ‰ ç„¡åŠ¹|æœ‰åŠ¹',$0D,$0A
     .dc.b   $00
 
 mes_disabled:
-    .dc.b   '‚ğ—˜—p‚Å‚«‚Ü‚¹‚ñ',$00
+    .dc.b   'ã‚’åˆ©ç”¨ã§ãã¾ã›ã‚“',$00
 mes_delay:
-    .dc.b   'MIDIM†‚Ì’x‰„ŠÔF',$00
+    .dc.b   'MIDIä¿¡å·ã®é…å»¶æ™‚é–“ï¼š',$00
 mes_ms:
     .dc.b   'ms',$00
 mes_patch:
-    .dc.b   'ƒLƒƒƒsƒ^ƒ‹—‚¿ÄŒ»F',$00
+    .dc.b   'ã‚­ãƒ£ãƒ”ã‚¿ãƒ«è½ã¡å†ç¾ï¼š',$00
 mes_on:
-    .dc.b   'ƒIƒ“',$00
+    .dc.b   'ã‚ªãƒ³',$00
 mes_off:
-    .dc.b   'ƒIƒt',$00
+    .dc.b   'ã‚ªãƒ•',$00
 
 ;-----------------------------------------------------------------------------------------
 
@@ -337,7 +337,7 @@ mes_off:
 ;-----------------------------------------------------------------------------------------
 
 flag_zmidictl:                                  ; bit76543210
-    .ds.b   1                                   ;   %10000000 quiet ƒ‚[ƒh
+    .ds.b   1                                   ;   %10000000 quiet ãƒ¢ãƒ¼ãƒ‰
 
 ;-----------------------------------------------------------------------------------------
 
